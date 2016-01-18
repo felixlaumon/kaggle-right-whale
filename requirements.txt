@@ -1,0 +1,4 @@
+git+https://github.com/benanne/Lasagne.git@126a10b44240169c9e70bfb34d0563c7dc816f74
+git+https://github.com/dnouri/nolearn.git@cdbe2354e72409e3b112db0c915408a73b895e79
+git+https://github.com/felixlaumon/nolearn_utils.git@9aaea335018a26028a774a9154c64be31df5c057
+git+https://github.com/Theano/Theano.git@54186290#egg=Theano==0.8.git
