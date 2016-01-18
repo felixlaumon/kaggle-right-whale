@@ -10,12 +10,13 @@ You should see [my blog post](http://felixlaumon.github.io/2015/01/08/kaggle-rig
 
 - Anaconda Python Distribution (any version should work but I used conda 3.19.0)
 - Theano, Lasagne, nolearn, nolearn_utils. `pip install -r requirements.txt` (Latest version should work fine if you have them installed with `python setup.py develop`)
+- NVidia GPU and cuDNN v3
 
 Alternatively you can train a model using Docker on AWS EC2 GPU instances. See README_DOCKER.md for details
 
 ## Reproducing the final submission file
 
-### General noets
+### General notes
 
 To prevent wasting time on decoding the jpgs over and over again, I decoded the jpgs into a numpy memmap array. The resulting files would take quite a bit of disk space.
 
@@ -52,6 +53,8 @@ You should also create the `models/`, `cache/`,  `model_features/` folders, endi
     scripts/
     submissions/
 
+Run `ipython -i --pdb scripts/create_label_encoder.py` to create `models/encoder.pkl`
+
 ### 2. Train whale head aligner
 
 Run `ipython -i --pdb scripts/create_cached_image.py -- --size 256` to create cached training images with bonnet and blowhead as the target
@@ -66,7 +69,7 @@ Run `ipython -i --pdb scripts/create_test_head_crop_image.py -- --size 256 --dat
 
 Run `ipython -i --pdb scripts/create_cached_head_crop_image.py -- --size 256` to create aligned whale head training images.
 
-Run `ipython -i --pdb scripts/train_models.py -- --model [model_name] --data 256_head_[date] --use-cropped --no_mean --no_test`
+Run `ipython -i --pdb scripts/train_pts_models.py -- --model [model_name] --data 256_head_[date] --no_test`
 
 Below is a list of my recommended model definitions:
 
@@ -78,7 +81,7 @@ Below is a list of my recommended model definitions:
 - cropped_jan05_4 (ResNet 3-4-23-4)
 - cropped_jan05_3 (Inception-v3-simplified)
 
-### 4. Feature extraction
+### 4. Features extraction
 
 Optional if you want to just use the output of one model.
 
@@ -95,4 +98,4 @@ Run `ipython -i --pdb scripts/predict_from_head_crop.py -- --data localize_pts_d
 
 #### 6. Create final ensemble
 
-This final step was done using a notebook `notebooks/Stacking.ipynb`. It will take the features extracted from step 4 and train a simple logistic regression.
+This final step was done with a notebook `notebooks/Stacking.ipynb`. It will take the features extracted from step 4 and train a simple logistic regression.

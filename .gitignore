@@ -100,7 +100,3 @@ backup/
 submissions/
 models/
 logs/
-
-# Include cleaned annotations in the repo
-!data/train_with_points.csv
-!data/train_with_annotations_vinh.csv
