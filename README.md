@@ -59,9 +59,9 @@ Run `ipython -i --pdb scripts/create_label_encoder.py` to create `models/encoder
 
 Run `ipython -i --pdb scripts/create_cached_image.py -- --size 256` to create cached training images with bonnet and blowhead as the target
 
-Run `ipython -i --pdb scripts/create_cached_test_image.py  --size 256` to create a cache for test images
+Run `ipython -i --pdb scripts/create_cached_test_image.py -- --size 256` to create a cache for test images
 
-Run `ipython -i --pdb scripts/train_pts_models.py -- --data 256_[date] -model localize_pts_dec31 --no_test` to train the aligner.
+Run `ipython -i --pdb scripts/train_pts_models.py -- --data 256_[date] --model localize_pts_dec31 --no_test` to train the aligner.
 
 Run `ipython -i --pdb scripts/create_test_head_crop_image.py -- --size 256 --data 256_[date] --model localize_pts_dec31 --tta` to use the trained model to create aligned test images. This also uses test-time augmentation so it will take quite a long time. Multiple processes will be used by default.
 
